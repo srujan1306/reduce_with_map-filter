@@ -1,0 +1,40 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Reduce Using Map and Filter with Objects</title>
+  </head>
+  <body>
+    <script>
+      const customMap = (array, callback) => {
+        return array.reduce((acc, current) => {
+          acc.push(callback(current));
+          return acc;
+        }, []);
+      };
+
+      const customFilter = (array, callback) => {
+        return array.reduce((acc, current) => {
+          if (callback(current)) {
+            acc.push(current);
+          }
+          return acc;
+        }, []);
+      };
+
+      const people = [
+        { name: "srujan", age: 21 },
+        { name: "rishika", age: 22 },
+        { name: "neha", age: 25 },
+        { name: "mani", age: 20 },
+      ];
+
+      const names = customMap(people, (person) => person.name);
+      console.log("Names:", names);
+
+      const olderThan20 = customFilter(people, (person) => person.age > 20);
+      console.log("People older than 20:", olderThan20);
+    </script>
+  </body>
+</html>
